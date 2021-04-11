@@ -1,8 +1,11 @@
 # Project Task App
+
 ```
 A project borad task application built using Java and Spring Framework
 ```
+
 # Tools And Technologies Used
+
 ```
 Java Programming
 Reactjs for fondend

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ import com.andilegumada.projectboard.service.ProjectTaskService;
 
 @RestController
 @RequestMapping("/api/board")
-@CrossOrigin
+@CrossOrigin()
 public class ProjectTaskController {
 	@Autowired
 	ProjectTaskService projectTaskService;
@@ -54,6 +55,12 @@ public class ProjectTaskController {
 	public ResponseEntity<?> getProjectTaskById(@PathVariable long pt_id){
 		ProjectTask projectTask = projectTaskService.findById(pt_id);
 		return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK);
+	}
+	//endpoint to delete by id
+	@DeleteMapping("/{pt_id}")
+	public ResponseEntity<?> deleteProjectTask(@PathVariable Long pt_id){
+		projectTaskService.delete(pt_id);
+		return new ResponseEntity<String>("Project Task deleted", HttpStatus.OK);
 	}
 
 }
